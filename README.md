@@ -18,3 +18,18 @@ Step 1
 
 * Bind model's change event in the view to render.
 * Update task in the console -> the HTML is magically updated!
+
+Step 2
+------
+
+* Create a Todos collection.
+* Create a TodosView and a todos template.
+* Implement rendering in TodosView.
+* Pass the collection as context.
+* Iterate through the items in the collection in the template.
+* try adding an item to the collection in the console.
+
+* Bind collection's add event in the view to render.
+* Add a nice fade effect.
+* Add a task to the collection in the console -> the *whole* HTML in
+  rerendered.
