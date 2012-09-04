@@ -46,3 +46,4 @@ Step 3
 * Update TasksView to only append one task when added to the collection instead
   of rendering the whole list again.
 * Test in the console.
+* Manage click in TaskView to toggle task's details visibility.
