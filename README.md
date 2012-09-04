@@ -33,3 +33,16 @@ Step 2
 * Add a nice fade effect.
 * Add a task to the collection in the console -> the *whole* HTML in
   rerendered.
+
+Step 3
+------
+
+* Remove the each block in the view.
+* Use TaskView in TasksView to render each tasks.
+* Update a task in the console -> the HTML for the task is automatically
+  updated.
+* Add tasks to the collection in the console -> the *whole* list is still
+  rerendered.
+* Update TasksView to only append one task when added to the collection instead
+  of rendering the whole list again.
+* Test in the console.

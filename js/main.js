@@ -44,7 +44,7 @@ require(['models/task', 'collections/tasks', 'views/tasks'], function(Task, Task
 
   var task2 = new Task({
     title: 'Learn RESThub',
-    description: 'Use rethub.org.'
+    description: 'Use resthub.org.'
   });
 
   tasks.add(task1);
