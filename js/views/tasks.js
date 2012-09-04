@@ -2,7 +2,7 @@ define(['backbone', 'views/task', 'hbs!templates/tasks'], function(Backbone, Tas
 
   var TasksView = Backbone.View.extend({
     initialize: function() {
-      this.collection.on('add', this.render, this);
+      this.collection.on('add', this.add, this);
     },
     render: function() {
       this.$el.fadeOut(function() {
