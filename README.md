@@ -47,3 +47,10 @@ Step 3
   of rendering the whole list again.
 * Test in the console.
 * Manage click in TaskView to toggle task's details visibility.
+
+Step 4
+------
+
+* Use RESThub facilities for managing rendering: Add a root, rendering strategy
+  and template to the views.
+* Call the parent render function in TasksView.

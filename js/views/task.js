@@ -1,6 +1,9 @@
 define(['backbone', 'hbs!templates/task'], function(Backbone, taskTemplate) {
 
   var TaskView = Backbone.View.extend({
+    root: '.task-list',
+    strategy: 'append',
+    template: taskTemplate,
     className: 'task',
     events: {
       click: 'toggleDetails'
@@ -9,9 +12,7 @@ define(['backbone', 'hbs!templates/task'], function(Backbone, taskTemplate) {
       this.model.on('change', this.render, this);
     },
     render: function() {
-      this.$el.fadeOut(function() {
-        this.$el.html(taskTemplate(this.model.toJSON())).fadeIn();
-      }.bind(this));
+      TaskView.__super__.render.apply(this);
       return this;
     },
     toggleDetails: function() {

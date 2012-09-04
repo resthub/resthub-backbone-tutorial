@@ -51,6 +51,6 @@ require(['models/task', 'collections/tasks', 'views/tasks'], function(Task, Task
   tasks.add(task2);
 
   var tasksView = new TasksView({collection: tasks});
-  $('#tasks').html(tasksView.render().el);
+  tasksView.render();
 
 });
