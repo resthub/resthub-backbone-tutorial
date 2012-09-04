@@ -34,7 +34,8 @@ require.config({
 
 require(['models/task', 'collections/tasks', 'views/tasks'], function(Task, Tasks, TasksView) {
 
-  var tasks = new Tasks();
+  window.Task = Task;
+  window.tasks = new Tasks();
 
   var task1 = new Task({
     title: 'Learn Backbone',
