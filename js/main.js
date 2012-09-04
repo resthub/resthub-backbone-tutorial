@@ -34,7 +34,7 @@ require.config({
 
 require(['models/task', 'views/task'], function(Task, TaskView) {
 
-  var task = new Task({
+  window.task = new Task({
     title: 'Learn Backbone',
     description: 'To write great Rich Internet Applications.'
   });
