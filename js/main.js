@@ -32,14 +32,24 @@ require.config({
   }
 });
 
-require(['models/task', 'views/task'], function(Task, TaskView) {
+require(['models/task', 'collections/tasks', 'views/tasks'], function(Task, Tasks, TasksView) {
 
-  window.task = new Task({
+  var tasks = new Tasks();
+
+  var task1 = new Task({
     title: 'Learn Backbone',
     description: 'To write great Rich Internet Applications.'
   });
 
-  var taskView = new TaskView({model: task});
-  $('#tasks').html(taskView.render().el);
+  var task2 = new Task({
+    title: 'Learn RESThub',
+    description: 'Use rethub.org.'
+  });
+
+  tasks.add(task1);
+  tasks.add(task2);
+
+  var tasksView = new TasksView({collection: tasks});
+  $('#tasks').html(tasksView.render().el);
 
 });
