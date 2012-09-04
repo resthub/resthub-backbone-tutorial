@@ -32,8 +32,14 @@ require.config({
   }
 });
 
-require([], function() {
+require(['models/task', 'views/task'], function(Task, TaskView) {
 
-  console.log('Hello!');
+  var task = new Task({
+    title: 'Learn Backbone',
+    description: 'To write great Rich Internet Applications.'
+  });
+
+  var taskView = new TaskView({model: task});
+  $('#tasks').html(taskView.render().el);
 
 });
