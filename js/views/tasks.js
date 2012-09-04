@@ -14,7 +14,7 @@ define(['backbone', 'views/task', 'hbs!templates/tasks'], function(Backbone, Tas
     },
     add: function(task) {
       var taskView = new TaskView({model: task});
-      taskView.render().$el.hide().appendTo(this.$('.task-list')).fadeIn();
+      taskView.render().$el.appendTo(this.$('.task-list'));
     }
   });
 

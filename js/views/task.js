@@ -6,7 +6,9 @@ define(['backbone', 'hbs!templates/task'], function(Backbone, taskTemplate) {
       this.model.on('change', this.render, this);
     },
     render: function() {
-      this.$el.html(taskTemplate(this.model.toJSON()));
+      this.$el.fadeOut(function() {
+        this.$el.html(taskTemplate(this.model.toJSON())).fadeIn();
+      }.bind(this));
       return this;
     }
   });
