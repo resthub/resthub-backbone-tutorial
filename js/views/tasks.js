@@ -3,6 +3,9 @@ define(['backbone', 'views/task', 'hbs!templates/tasks'], function(Backbone, Tas
   var TasksView = Backbone.View.extend({
     root: '#tasks',
     template: tasksTemplate,
+    events: {
+      'click #create': 'create'
+    },
     initialize: function() {
       this.collection.on('add', this.add, this);
     },
@@ -14,6 +17,10 @@ define(['backbone', 'views/task', 'hbs!templates/tasks'], function(Backbone, Tas
     add: function(task) {
       var taskView = new TaskView({model: task});
       taskView.render();
+    },
+    create: function() {
+      var taskView = new TaskView({model: new Task()});
+      taskView.edit();
     }
   });
 
