@@ -8,6 +8,8 @@ define(['backbone', 'hbs!templates/taskform'], function(Backbone, taskFormTempla
       'click .cancel': 'cancel'
     },
     save: function() {
+      // Silent cause we want to manually force trigger change event even if
+      // there were no actual changes to the fields.
       this.model.set({
         title: this.$('.title').val(),
         description: this.$('.description').val(),

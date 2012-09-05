@@ -19,7 +19,9 @@ define(['backbone', 'views/task', 'hbs!templates/tasks'], function(Backbone, Tas
       taskView.render();
     },
     create: function() {
-      var taskView = new TaskView({model: new Task()});
+      var task = new Task();
+      this.collection.add(task, {silent: true});
+      var taskView = new TaskView({model: task});
       taskView.edit();
     }
   });
