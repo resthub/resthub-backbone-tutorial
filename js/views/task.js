@@ -11,6 +11,7 @@ define(['backbone', 'views/taskform', 'hbs!templates/task'], function(Backbone, 
     },
     initialize: function() {
       this.model.on('change', this.render, this);
+      this.model.on('destroy', this.remove, this);
     },
     render: function() {
       this.$el.fadeOut(function() {

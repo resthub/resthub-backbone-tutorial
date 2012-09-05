@@ -8,6 +8,7 @@ define(['backbone', 'views/task', 'hbs!templates/tasks'], function(Backbone, Tas
     },
     initialize: function() {
       this.collection.on('add', this.add, this);
+      this.collection.on('remove', this.remove, this);
     },
     render: function() {
       TasksView.__super__.render.apply(this);
@@ -20,9 +21,13 @@ define(['backbone', 'views/task', 'hbs!templates/tasks'], function(Backbone, Tas
     },
     create: function() {
       var task = new Task();
+      // Silent cause we do not want to render but to be in edit mode
       this.collection.add(task, {silent: true});
       var taskView = new TaskView({model: task});
       taskView.edit();
+    },
+    remove: function(task) {
+      task.destroy();
     }
   });
 

@@ -5,7 +5,8 @@ define(['backbone', 'hbs!templates/taskform'], function(Backbone, taskFormTempla
     tagName: 'form',
     events: {
       submit: 'save',
-      'click .cancel': 'cancel'
+      'click .cancel': 'cancel',
+      'click .delete': 'delete'
     },
     save: function() {
       // Silent cause we want to manually force trigger change event even if
@@ -19,6 +20,9 @@ define(['backbone', 'hbs!templates/taskform'], function(Backbone, taskFormTempla
     },
     cancel: function() {
       this.model.trigger('change');
+    },
+    delete: function() {
+      this.model.destroy();
     }
   });
 
