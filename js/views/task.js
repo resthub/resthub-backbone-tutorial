@@ -12,7 +12,10 @@ define(['backbone', 'hbs!templates/task'], function(Backbone, taskTemplate) {
       this.model.on('change', this.render, this);
     },
     render: function() {
-      TaskView.__super__.render.apply(this);
+      this.$el.fadeOut(function() {
+        TaskView.__super__.render.apply(this);
+        this.$el.fadeIn();
+      }.bind(this));
       return this;
     },
     toggleDetails: function() {
