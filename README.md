@@ -54,3 +54,8 @@ Step 4
 * Use RESThub facilities for managing rendering: Add a root, rendering strategy
   and template to the views.
 * Call the parent render function in TasksView.
+* Add a nice fade effect to TaskView.
+* In the console try adding a Task: thanks to the effect we can see that only
+  one more Task is rendered and not the entirely list.
+* In the console, update an existing Task: thanks to the effect we can see that
+  just this task is updated.
