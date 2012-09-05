@@ -4,7 +4,8 @@ define(['backbone', 'hbs!templates/taskform'], function(Backbone, taskFormTempla
     template: taskFormTemplate,
     tagName: 'form',
     events: {
-      submit: 'save'
+      submit: 'save',
+      'click .cancel': 'cancel'
     },
     save: function() {
       this.model.set({
@@ -13,6 +14,9 @@ define(['backbone', 'hbs!templates/taskform'], function(Backbone, taskFormTempla
       }, {silent: true});
       this.model.trigger('change', this.model);
       return false;
+    },
+    cancel: function() {
+      this.model.trigger('change');
     }
   });
 
