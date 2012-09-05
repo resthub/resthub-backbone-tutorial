@@ -59,3 +59,26 @@ Step 4
   one more Task is rendered and not the entirely list.
 * In the console, update an existing Task: thanks to the effect we can see that
   just this task is updated.
+
+Step 5
+------
+
+* Create TaskFormView which is rendered when double clicking on a TaskView.
+* When the form is submitted, update the task with the changes and display it
+  again -> note that the change event is not triggered when there was no
+  changes at all.
+* Add a button to create a new empty task. In TasksView, bind its click event
+  to a create method which instantiate a new empty task with a TaskView which
+  is directly editable.
+* Note that you have to add the task to the collection otherwise when you
+  render the whole collection again, the created tasks disappear.
+* Add a delete button which delete a task.
+* Note that we can't directly remove it from the collection cause the
+  TaskFormView is not responsible for the collection management and does not
+  have access to this one.
+* Then use the model's destroy method and note that Backbone will automatically
+  remove the dstroyed object from the collection on a destroy event.
+* Note in the console that when removing a task manually in the collection, it
+  does not disappear.
+* Bind remove event on the collection to call task.destroy() in TasksView.
+* Test again in the console.
