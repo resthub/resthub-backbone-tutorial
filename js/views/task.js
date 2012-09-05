@@ -1,4 +1,4 @@
-define(['backbone', 'hbs!templates/task'], function(Backbone, taskTemplate) {
+define(['backbone', 'views/taskform', 'hbs!templates/task'], function(Backbone, TaskFormView, taskTemplate) {
 
   var TaskView = Backbone.View.extend({
     root: '.task-list',
@@ -6,7 +6,8 @@ define(['backbone', 'hbs!templates/task'], function(Backbone, taskTemplate) {
     template: taskTemplate,
     className: 'task',
     events: {
-      click: 'toggleDetails'
+      click: 'toggleDetails',
+      dblclick: 'edit'
     },
     initialize: function() {
       this.model.on('change', this.render, this);
@@ -17,6 +18,10 @@ define(['backbone', 'hbs!templates/task'], function(Backbone, taskTemplate) {
         this.$el.fadeIn();
       }.bind(this));
       return this;
+    },
+    edit: function() {
+      var taskFormView = new TaskFormView({root: this.$el, model: this.model});
+      taskFormView.render();
     },
     toggleDetails: function() {
       this.$('p').slideToggle();
