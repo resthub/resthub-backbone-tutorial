@@ -4,6 +4,7 @@ define(['backbone', 'views/taskform', 'hbs!templates/task'], function(Backbone, 
     root: '.task-list',
     strategy: 'append',
     template: taskTemplate,
+    tagName: 'li',
     className: 'task',
     events: {
       click: 'toggleDetails',

@@ -1,12 +1,13 @@
 #tasks {
-    margin-top: 60px;
+    margin-top: 40px;
 }
 
 .task-list {
+    margin: 20px 0;
 }
 
 .task {
-    padding: 6px 10px;
+    padding: 10px;
     list-style: none;
     border: solid 1px #e5e5e5;
     border-bottom: none;
@@ -24,8 +25,18 @@
 .task h1 {
     font-size: 20px;
     margin: 0;
+    line-height: 20px;
 }
 
 .task p {
+    margin: 10px 0 0;
     display: none;
+}
+
+.task form {
+    margin: 0;
+}
+
+.task form input, .task form textarea {
+    margin: 0;
 }
