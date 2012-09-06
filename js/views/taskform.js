@@ -8,14 +8,23 @@ define(['backbone', 'hbs!templates/taskform'], function(Backbone, taskFormTempla
       'click .cancel': 'cancel',
       'click .delete': 'delete'
     },
+    initialize: function() {
+      this.model.on('error', this.error, this);
+    },
     save: function() {
-      // Silent cause we want to manually force trigger change event even if
-      // there were no actual changes to the fields.
-      this.model.set({
-        title: this.$('.title').val(),
-        description: this.$('.description').val(),
-      }, {silent: true});
-      this.model.trigger('change', this.model);
+
+      var success = this.model.set({
+        title: this.$('.title-field').val(),
+        description: this.$('.desc-field').val(),
+      });
+
+      // If validation passed, manually force trigger
+      // change event even if there were no actual
+      // changes to the fields.
+      if (success) {
+        this.model.trigger('change');
+      }
+
       return false;
     },
     cancel: function() {
@@ -23,6 +32,10 @@ define(['backbone', 'hbs!templates/taskform'], function(Backbone, taskFormTempla
     },
     delete: function() {
       this.model.destroy();
+    },
+    error: function(model, error) {
+      this.$('.control-group:first-child').addClass('error');
+      this.$('.help-inline').html(error);
     }
   });
 
