@@ -1,4 +1,4 @@
-define(['backbone', 'hbs!templates/taskform'], function(Backbone, taskFormTemplate) {
+define(['backbone', 'hbs!templates/taskform', 'resthub-backbone-validation'], function(Backbone, taskFormTemplate) {
 
   var TaskFormView = Backbone.View.extend({
     template: taskFormTemplate,
@@ -9,10 +9,9 @@ define(['backbone', 'hbs!templates/taskform'], function(Backbone, taskFormTempla
       'click .delete': 'delete'
     },
     initialize: function() {
-      this.model.on('error', this.error, this);
+      Backbone.Validation.bind(this);
     },
     save: function() {
-
       var success = this.model.set({
         title: this.$('.title-field').val(),
         description: this.$('.desc-field').val(),
@@ -32,10 +31,6 @@ define(['backbone', 'hbs!templates/taskform'], function(Backbone, taskFormTempla
     },
     delete: function() {
       this.model.destroy();
-    },
-    error: function(model, error) {
-      this.$('.control-group:first-child').addClass('error');
-      this.$('.help-inline').html(error);
     }
   });
 

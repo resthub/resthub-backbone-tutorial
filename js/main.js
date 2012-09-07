@@ -1,10 +1,10 @@
 require.config({
   shim: {
     'underscore': {
-      exports:'_'
+      exports: '_'
     },
     'handlebars': {
-      exports:'Handlebars'
+      exports: 'Handlebars'
     },
     'backbone-orig': {
       deps: [
@@ -12,6 +12,10 @@ require.config({
         'jquery'
       ],
       exports: 'Backbone'
+    },
+    'backbone-validation': {
+      deps: ['backbone'],
+      exports: 'Backbone.Validation'
     }
   },
   paths: {
@@ -21,6 +25,8 @@ require.config({
     'backbone-orig': 'libs/backbone',
     'resthub/jquery-event-destroyed': 'libs/resthub/jquery-event-destroyed',
     backbone: 'libs/resthub/backbone.ext',
+    'backbone-validation': 'libs/backbone-validation',
+    'resthub-backbone-validation': 'libs/resthub/backbone-validation.ext',
     text: 'libs/text',
     handlebars: 'libs/handlebars',
     hbs: 'libs/require-handlebars',
