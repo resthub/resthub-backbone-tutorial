@@ -82,3 +82,14 @@ Step 5
   does not disappear.
 * Bind remove event on the collection to call task.destroy() in TasksView.
 * Test again in the console.
+
+Step 6
+------
+
+* Implement validate function in Task model: make sure that the title is not
+  blank.
+* In TaskFormView bind model's error event on a function which renders
+  validation errors.
+* Use Backbone.Validation for easy validation management.
+* Note that Backbone.Validation can handle for you error displaying in your
+  views.
