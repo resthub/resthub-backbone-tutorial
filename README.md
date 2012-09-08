@@ -93,3 +93,21 @@ Step 6
 * Use Backbone.Validation for easy validation management.
 * Note that Backbone.Validation can handle for you error displaying in your
   views.
+
+Step 7
+------
+
+* Our data are not persisted, after a refresh, our task collection will be
+  reinitialized.
+* Use Backbone local storage extension to persist our tasks into the local
+  storage.
+* Bind the collection's reset event on TasksView.render to render the
+  collection once synced with the local storage.
+* Warning: you need to specify the model attribute in the Tasks collection to
+  tell the collection which model object is gonna be used internally.
+  Otherwise, when fetching, the returned JSON object will be added directly to
+  the collection without instantiating a Task. As a consequence every specific
+  attributes (like validation hash), would be unavailable in the model. At this
+  step, if validation does not work anymore after fetching the tasks through
+  Backbone.sync, check that the model attribute is correctly set in the
+  collection.
