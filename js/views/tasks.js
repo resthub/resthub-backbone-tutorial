@@ -7,6 +7,7 @@ define(['backbone', 'views/task', 'hbs!templates/tasks'], function(Backbone, Tas
       'click #create': 'create'
     },
     initialize: function() {
+      this.collection.on('reset', this.render, this);
       this.collection.on('add', this.add, this);
       this.collection.on('remove', this.remove, this);
     },

@@ -12,18 +12,11 @@ define(['backbone', 'hbs!templates/taskform', 'resthub-backbone-validation'], fu
       Backbone.Validation.bind(this);
     },
     save: function() {
-      var success = this.model.set({
+      this.model.set({
         title: this.$('.title-field').val(),
         description: this.$('.desc-field').val(),
       });
-
-      // If validation passed, manually force trigger
-      // change event even if there were no actual
-      // changes to the fields.
-      if (success) {
-        this.model.trigger('change');
-      }
-
+      this.model.save();
       return false;
     },
     cancel: function() {
@@ -31,6 +24,7 @@ define(['backbone', 'hbs!templates/taskform', 'resthub-backbone-validation'], fu
     },
     delete: function() {
       this.model.destroy();
+      return false;
     }
   });
 

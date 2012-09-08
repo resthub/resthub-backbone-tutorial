@@ -12,6 +12,7 @@ define(['backbone', 'views/taskform', 'hbs!templates/task'], function(Backbone, 
     },
     initialize: function() {
       this.$el.hide();
+      this.model.on('sync', this.render, this);
       this.model.on('change', this.render, this);
       this.model.on('destroy', this.remove, this);
     },

@@ -16,6 +16,10 @@ require.config({
     'backbone-validation': {
       deps: ['backbone'],
       exports: 'Backbone.Validation'
+    },
+    'backbone-localstorage': {
+      deps: ['backbone'],
+      exports: 'Backbone'
     }
   },
   paths: {
@@ -25,6 +29,7 @@ require.config({
     'backbone-orig': 'libs/backbone',
     'resthub/jquery-event-destroyed': 'libs/resthub/jquery-event-destroyed',
     backbone: 'libs/resthub/backbone.ext',
+    'backbone-localstorage': 'libs/backbone.localStorage',
     'backbone-validation': 'libs/backbone-validation',
     'resthub-backbone-validation': 'libs/resthub/backbone-validation.ext',
     text: 'libs/text',
@@ -43,20 +48,7 @@ require(['models/task', 'collections/tasks', 'views/tasks'], function(Task, Task
   window.Task = Task;
   window.tasks = new Tasks();
 
-  var task1 = new Task({
-    title: 'Learn Backbone',
-    description: 'To write great Rich Internet Applications.'
-  });
-
-  var task2 = new Task({
-    title: 'Learn RESThub',
-    description: 'Use resthub.org.'
-  });
-
-  tasks.add(task1);
-  tasks.add(task2);
-
   var tasksView = new TasksView({collection: tasks});
-  tasksView.render();
+  tasks.fetch();
 
 });
