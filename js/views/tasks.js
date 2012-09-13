@@ -9,7 +9,6 @@ define(['backbone', 'views/task', 'hbs!templates/tasks'], function(Backbone, Tas
     initialize: function() {
       this.collection.on('reset', this.render, this);
       this.collection.on('add', this.add, this);
-      this.collection.on('remove', this.remove, this);
     },
     render: function() {
       TasksView.__super__.render.apply(this);
@@ -26,9 +25,6 @@ define(['backbone', 'views/task', 'hbs!templates/tasks'], function(Backbone, Tas
       this.collection.add(task, {silent: true});
       var taskView = new TaskView({model: task});
       taskView.edit();
-    },
-    remove: function(task) {
-      task.destroy();
     }
   });
 
