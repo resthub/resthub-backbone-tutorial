@@ -1,8 +1,8 @@
-define(['backbone', 'models/task', 'backbone-localstorage'], function(Backbone, Task) {
+define(['backbone', 'models/task'], function(Backbone, Task) {
 
   var Tasks = Backbone.Collection.extend({
-    model: Task,
-    localStorage: new Backbone.LocalStorage("SomeCollection"),
+    url: 'api/task',
+    model: Task
   });
 
   return Tasks;

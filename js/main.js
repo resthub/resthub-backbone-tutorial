@@ -49,6 +49,6 @@ require(['models/task', 'collections/tasks', 'views/tasks'], function(Task, Task
   window.tasks = new Tasks();
 
   var tasksView = new TasksView({collection: tasks});
-  tasks.fetch();
+  tasks.fetch({ data: { page: 'no'} });
 
 });
