@@ -1,4 +1,4 @@
-define(['underscore', 'backbone-orig', 'pubsub', 'resthub/jquery-event-destroyed'], function(_, Backbone, PubSub) {
+define(['underscore', 'backbone-orig', 'pubsub', 'libs/resthub/jquery-event-destroyed'], function(_, Backbone, PubSub) {
 
     // Backbone.View extension
     // -----------------------
@@ -26,12 +26,11 @@ define(['underscore', 'backbone-orig', 'pubsub', 'resthub/jquery-event-destroyed
         strategy: 'replace',
 
         _ensureRoot: function() {
-            var $root = this.root instanceof $ ? this.root : $(this.root);
-            if ($root.length != 1) {
-                throw new Error('Root element "' + $root + '" does not exist or is not unique.');
+            this.$root = this.root instanceof $ ? this.root : $(this.root);
+            if (this.$root.length != 1) {
+                throw new Error('Root element "' + this.$root.selector + '" does not exist or is not unique.');
             }
-            this.root = $root[0];
-            this.$root = $root;
+            this.root = this.$root.first();
         },
 
         _insertRoot: function() {
@@ -64,9 +63,9 @@ define(['underscore', 'backbone-orig', 'pubsub', 'resthub/jquery-event-destroyed
                     }, this);
                     context = this[key];
                 }
-                if (context && context.toJSON) {
-                    context = context.toJSON();
-                }
+            }
+            if (context && context.toJSON) {
+                context = context.toJSON();
             }
             // Maybe throw an error if the context could not be determined
             // instead of returning {}
@@ -162,7 +161,7 @@ define(['underscore', 'backbone-orig', 'pubsub', 'resthub/jquery-event-destroyed
             PubSub.off(null, null, this);
 
             if (Backbone.Validation) {
-                Backbone.Validation.unbind(this)
+                Backbone.Validation.unbind(this);
             }
 
             return this;
@@ -172,30 +171,28 @@ define(['underscore', 'backbone-orig', 'pubsub', 'resthub/jquery-event-destroyed
             return this;
         },
 
-        /** utility method providing a default and basic handler that
-         * populate model from a form input
-         *
-         * @param form form element to 'parse'. form parameter could be a css selector or a
-         * jQuery element. if undefined, the first form of this view el is used.
-         * @param model model instance to populate. if no model instance is provided,
-         * search for 'this.model'
-         **/
+        // populate model from a form input
+        //
+        // form parameter could be a css selector or a jQuery element. if undefined,
+        // the first form of this view el is used.
+        // if no model instance is provided, search for 'this.model'
         populateModel: function(form, model) {
             var attributes = {};
 
-            form = form || this.$el.find("form");
-            form = form instanceof Backbone.$ ? form : this.$el.find((Backbone.$(form)));
-            var fields = form.find("input[type!='submit']");
+            form = form || (this.el.tagName === 'FORM' ? this.$el : this.$el.find("form"));
+            form = form instanceof Backbone.$ ? form : this.$el.find(form);
+            var fields = form.find("input[type!='submit'][type!='button'], textarea, select");
 
             if (arguments.length < 2) model = this.model;
 
             // build array of form attributes to refresh model
-            fields.each(_.bind(function(index, value) {
-                attributes[value.name] = value.value;
-                if (model) {
-                    model.set(value.name, value.value);
-                }
-            }, this));
+            fields.each(function() {
+                attributes[Backbone.$(this).attr('name')] = Backbone.$(this).val();
+            });
+
+            if (model) {
+                model.set(attributes);
+            }
         }
 
     });
