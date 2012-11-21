@@ -1,54 +1,91 @@
+// Set the require.js configuration for your application.
 require.config({
-  shim: {
-    'underscore': {
-      exports: '_'
+
+    shim: {
+        'underscore': {
+            exports: '_'
+        },
+        'underscore-string': {
+            deps: [
+            'underscore'
+            ]
+        },
+        'handlebars-orig': {
+            exports: 'Handlebars'
+        },
+        'backbone': {
+            deps: [
+            'underscore',
+            'underscore-string',
+            'jquery'
+            ],
+            exports: 'Backbone'
+        },
+        'backbone-queryparams': {
+            deps: [
+            'backbone',
+            'underscore'
+            ]
+        },
+        'backbone-paginator': {
+            deps: [
+            'backbone',
+            'underscore',
+            'jquery'
+            ],
+            exports: 'Backbone.Paginator'
+        },
+        'bootstrap': {
+            deps: [
+            'jquery'
+            ]
+        },
+        'backbone-relational': {
+            deps: [
+            'backbone',  
+            'underscore'  
+            ]
+        },
+        'keymaster': {
+            exports: 'key'
+        },
+        'async': {
+            exports: 'async'
+        },
+	    'backbone-localstorage': {
+	      deps: ['backbone'],
+	      exports: 'Backbone'
+	    }
     },
-    'handlebars': {
-      exports: 'Handlebars'
-    },
-    'backbone-orig': {
-      deps: [
-        'underscore',
-        'jquery'
-      ],
-      exports: 'Backbone'
-    },
-    'backbone-validation': {
-      deps: ['backbone'],
-      exports: 'Backbone.Validation'
-    },
-    'backbone-localstorage': {
-      deps: ['backbone'],
-      exports: 'Backbone'
+
+    // Libraries
+    paths: {
+        jquery: 'lib/jquery',
+        underscore: 'lib/underscore',
+        'underscore-string': 'lib/underscore-string',
+        backbone: 'lib/backbone',
+        resthub: 'lib/resthub/resthub',
+        localstorage: 'lib/localstorage',
+        text: 'lib/text',
+        i18n: 'lib/i18n',
+        pubsub: 'lib/resthub/pubsub',
+        'bootstrap': 'lib/bootstrap',
+        'backbone-validation-orig': 'lib/backbone-validation',
+        'backbone-validation': 'lib/resthub/backbone-validation-ext',
+        'handlebars-orig': 'lib/handlebars',
+        'handlebars': 'lib/resthub/handlebars-helpers',
+        'backbone-localstorage': 'lib/backbone-localstorage',
+        'backbone-queryparams': 'lib/backbone-queryparams',
+        'backbone-paginator': 'lib/backbone-paginator',
+        'backbone-relational': 'lib/backbone-relational',
+        async: 'lib/async',
+        keymaster: 'lib/keymaster',
+        hbs: 'lib/resthub/require-handlebars',
+        moment: 'lib/moment',
+        template: '../template',
+        console: 'lib/resthub/console'
     }
-  },
-  paths: {
-    jquery: 'libs/jquery.min',
-    underscore: 'libs/underscore',
-    pubsub: 'libs/resthub/pubsub',
-    'backbone-orig': 'libs/backbone',
-    'resthub/jquery-event-destroyed': 'libs/resthub/jquery-event-destroyed',
-    backbone: 'libs/resthub/backbone.ext',
-    'backbone-localstorage': 'libs/backbone.localStorage',
-    'backbone-validation': 'libs/backbone-validation',
-    'resthub-backbone-validation': 'libs/resthub/backbone-validation.ext',
-    text: 'libs/text',
-    handlebars: 'libs/handlebars',
-    hbs: 'libs/require-handlebars',
-  },
-  config: {
-    hbs: {
-      extension: 'hbs'
-    }
-  }
 });
 
-require(['models/task', 'collections/tasks', 'views/tasks'], function(Task, Tasks, TasksView) {
-
-  window.Task = Task;
-  window.tasks = new Tasks();
-
-  var tasksView = new TasksView({collection: tasks});
-  tasks.fetch();
-
-});
+// Load our app module and pass it to our definition function
+require(['console', 'app']);
