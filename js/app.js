@@ -1,4 +1,4 @@
-define(['model/task', 'collection/tasks', 'view/tasks'], function(Task, Tasks, TasksView) {
+define(['model/task', 'collection/tasks', 'view/tasks-view'], function(Task, Tasks, TasksView) {
     window.Task = Task;
   	window.tasks = new Tasks();
 
