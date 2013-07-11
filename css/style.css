@@ -11,6 +11,7 @@
     list-style: none;
     border: solid 1px #e5e5e5;
     border-bottom: none;
+    cursor: default;
 }
 
 .task:first-child {

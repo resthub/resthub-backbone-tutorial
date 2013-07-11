@@ -12,11 +12,10 @@ define(['backbone', 'resthub', 'hbs!template/task-form', 'backbone-validation'],
       Backbone.Validation.bind(this);
     },
     save: function() {
-      this.model.set({
+      this.model.save({
         title: this.$('.title-field').val(),
         description: this.$('.desc-field').val(),
       });
-      this.model.save();
       return false;
     },
     cancel: function() {

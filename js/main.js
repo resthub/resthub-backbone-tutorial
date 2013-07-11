@@ -7,7 +7,7 @@ require.config({
         },
         'underscore-string': {
             deps: [
-            'underscore'
+                'underscore'
             ]
         },
         'handlebars-orig': {
@@ -15,35 +15,32 @@ require.config({
         },
         'backbone': {
             deps: [
-            'underscore',
-            'underscore-string',
-            'jquery'
+                'underscore',
+                'underscore-string',
+                'jquery'
             ],
             exports: 'Backbone'
         },
-        'backbone-queryparams': {
+        'backbone-datagrid': {
             deps: [
-            'backbone',
-            'underscore'
-            ]
+                'backbone'
+            ],
+            exports: 'Backbone.Datagrid'
         },
         'backbone-paginator': {
             deps: [
-            'backbone',
-            'underscore',
-            'jquery'
+                'backbone'
             ],
             exports: 'Backbone.Paginator'
         },
         'bootstrap': {
             deps: [
-            'jquery'
+                'jquery'
             ]
         },
         'backbone-relational': {
             deps: [
-            'backbone',  
-            'underscore'  
+                'backbone'
             ]
         },
         'keymaster': {
@@ -51,11 +48,7 @@ require.config({
         },
         'async': {
             exports: 'async'
-        },
-	    'backbone-localstorage': {
-	      deps: ['backbone'],
-	      exports: 'Backbone'
-	    }
+        }
     },
 
     // Libraries
@@ -65,7 +58,7 @@ require.config({
         'underscore-string': 'lib/underscore-string',
         backbone: 'lib/backbone',
         resthub: 'lib/resthub/resthub',
-        localstorage: 'lib/localstorage',
+        'backbone-localstorage': 'lib/backbone-localstorage',
         text: 'lib/text',
         i18n: 'lib/i18n',
         pubsub: 'lib/resthub/pubsub',
@@ -74,8 +67,8 @@ require.config({
         'backbone-validation': 'lib/resthub/backbone-validation-ext',
         'handlebars-orig': 'lib/handlebars',
         'handlebars': 'lib/resthub/handlebars-helpers',
-        'backbone-localstorage': 'lib/backbone-localstorage',
         'backbone-queryparams': 'lib/backbone-queryparams',
+        'backbone-datagrid': 'lib/backbone-datagrid',
         'backbone-paginator': 'lib/backbone-paginator',
         'backbone-relational': 'lib/backbone-relational',
         async: 'lib/async',
@@ -83,6 +76,7 @@ require.config({
         hbs: 'lib/resthub/require-handlebars',
         moment: 'lib/moment',
         template: '../template',
+		json2: 'lib/json2',
         console: 'lib/resthub/console'
     }
 });

@@ -7,8 +7,8 @@ define(['backbone', 'resthub', 'view/task-view', 'hbs!template/tasks'], function
       'click #create': 'create'
     },
     initialize: function() {
-      this.collection.on('reset', this.render, this);
-      this.collection.on('add', this.add, this);
+      this.collection.on('sync', this.render, this);
+      //this.collection.on('add', this.add, this);
     },
     render: function() {
       TasksView.__super__.render.apply(this);
