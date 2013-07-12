@@ -10,10 +10,10 @@ define(['backbone', 'resthub', 'view/task-form-view', 'hbs!template/task'], func
       click: 'toggleDetails',
       dblclick: 'edit'
     },
-    initialize: function() {
-      this.model.on('sync', this.render, this);
-      this.model.on('change', this.render, this);
-      this.model.on('destroy', this.remove, this);
+    initialize: function() {      
+      this.listenTo(this.model, 'sync', this.render);
+      this.listenTo(this.model, 'change', this.render);
+      this.listenTo(this.model, 'destroy', this.remove);
     },
     edit: function() {
       var taskFormView = new TaskFormView({root: this.$el, model: this.model});
